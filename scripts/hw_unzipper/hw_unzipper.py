@@ -23,7 +23,7 @@ from google_auth_oauthlib.flow      import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient                import discovery
 
-USAGE = """usage: hw_unzipper hw_archive [out_dir]
+USAGE = """usage: hw_unzipper.py hw_archive [out_dir]
 
 positional arguments:
  hw_archive   zip file with all homeworks
