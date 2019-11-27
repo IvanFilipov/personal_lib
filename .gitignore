@@ -108,3 +108,8 @@ venv.bak/
 
 # all zip files
 *.zip
+
+# Ignore all hw_unzipper meta file
+/scripts/hw_unzipper/*_hw_*_check
+/scripts/hw_unzipper/credentials.json
+/scripts/hw_unzipper/token.pickle
