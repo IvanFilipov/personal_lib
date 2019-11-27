@@ -210,6 +210,7 @@ def main(args):
         sys.exit(2)
 
     out_dir_name_root = args[2] if len(args) > 2 else "./"
+    ensure_dir_exists(out_dir_name_root)
 
     # extract info and prepare output direcory
     hw_num, is_easy = get_hw_num_and_type_from_zip_name(zip_file_name)
