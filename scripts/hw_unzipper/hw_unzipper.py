@@ -7,7 +7,7 @@ course @ FMI, Sofia University 2019-2020.
 """
 
 __author__     = "Ivan Filipov"
-__version__    = "0.0.1"
+__version__    = "1.0.1"
 __maintainer__ = "Ivan Filipov"
 __email__      = "vanaka11.89@gmail.com"
 __status__     = "Production"
@@ -142,7 +142,9 @@ def process_single_file(out_dir, zf, file_info, name, my_students, end_date):
                                 names[0] + "_" + names[1])
     ensure_dir_exists(sub_dir_name)
     # extract the file
-    file_name = file_info.filename.split("_")[-1]
+    file_name = file_info.filename.split("_assignsubmission_file_")[-1]
+    if file_name.startswith('/') or file_name.startswith("\\"):
+        file_name = file_name[1:]
     full_file_name = os.path.join(sub_dir_name, file_name)
     with open(full_file_name, "wb") as out_file:
         out_file.write(zf.read(file_info.filename))
@@ -153,8 +155,8 @@ def process_single_file(out_dir, zf, file_info, name, my_students, end_date):
         flag_file_name = os.path.join(sub_dir_name, "flags.txt")
         late_with = (mod_date - end_date).seconds // 60
         with open(flag_file_name, "a") as out_file:
-            flag_string = file_name + " was submitted after the due datetime.\
-                          Late with %d minutes\n" % late_with
+            flag_string = file_name + " was submitted after the due datetime. " +\
+                          "Late with %d minutes\n" % late_with
             out_file.write(flag_string)
 
 def process_zip_file(filename, my_students, end_date, out_dir):
