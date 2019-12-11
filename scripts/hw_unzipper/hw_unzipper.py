@@ -7,7 +7,7 @@ course @ FMI, Sofia University 2019-2020.
 """
 
 __author__     = "Ivan Filipov"
-__version__    = "1.0.3"
+__version__    = "1.0.4"
 __maintainer__ = "Ivan Filipov"
 __email__      = "vanaka11.89@gmail.com"
 __status__     = "Production"
@@ -121,14 +121,16 @@ def get_end_date(sheet, hw_num):
     date_string = values[0][hw_num - 1]
     return datetime.datetime.strptime(date_string, "%d %m %Y, %H:%M")
 
-def get_data_from_google_drive(hw_num, hw_row_offset):
+def get_data_from_google_drive(hw_num, is_easy):
     """Extract all required data from the google spreadsheet."""
     g_credits = setup_google_drive_credits()
     service = discovery.build('sheets', 'v4', credentials=g_credits)
     sheet = service.spreadsheets()
     clr = get_my_clr(sheet)
+    hw_row_offset = EASY_HW_BASE_OFFSET if is_easy else HARD_HW_BASE_OFFSET
+    date_offset = hw_num if is_easy else hw_num + 10
     return get_students_ids_for_hw(clr, sheet, hw_num, hw_row_offset),\
-           get_end_date(sheet, hw_num)
+           get_end_date(sheet, date_offset)
 
 # ------------ Zip file related ------------
 
@@ -218,10 +220,9 @@ def main(args):
     hw_num, is_easy = get_hw_num_and_type_from_zip_name(zip_file_name)
     out_dir = format_output_dir_name(out_dir_name_root, hw_num, is_easy)
     ensure_dir_exists(out_dir)
-    hw_row_offset = EASY_HW_BASE_OFFSET if is_easy else HARD_HW_BASE_OFFSET
 
     # get the needed info from google spreadsheets and decompress wanted files
-    my_students, end_date = get_data_from_google_drive(hw_num, hw_row_offset)
+    my_students, end_date = get_data_from_google_drive(hw_num, is_easy)
     process_zip_file(zip_file_name, my_students, end_date, out_dir)
 
 if __name__ == '__main__':
