@@ -7,7 +7,7 @@ course @ FMI, Sofia University 2019-2020.
 """
 
 __author__     = "Ivan Filipov"
-__version__    = "1.0.1"
+__version__    = "1.0.2"
 __maintainer__ = "Ivan Filipov"
 __email__      = "vanaka11.89@gmail.com"
 __status__     = "Production"
@@ -45,9 +45,9 @@ CREDENTIALS_FILE = "credentials.json"
 TOKEN_FILE       = "token.pickle"
 
 SPREADSHEET_ID = "1CgFx73YgVE8uRnUVS2q3TUc5Kl_N18_zFTtvZVUGgqc"
-NAMES_RANGE = "Sheet1!B199:B211"
-DATES_RANGE = "Sheet1!D195:R195"
-HW_RANGE    = "Sheet1!A3:R194"
+NAMES_RANGE = "Sheet1!B205:B217"
+DATES_RANGE = "Sheet1!D198:R198"
+HW_RANGE    = "Sheet1!A4:R195"
 
 MY_NAME = "Иван Филипов" # CHANGE ME
 EASY_HW_BASE_OFFSET = 2
