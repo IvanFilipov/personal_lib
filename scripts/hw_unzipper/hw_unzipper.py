@@ -7,7 +7,7 @@ course @ FMI, Sofia University 2019-2020.
 """
 
 __author__     = "Ivan Filipov"
-__version__    = "1.0.2"
+__version__    = "1.0.3"
 __maintainer__ = "Ivan Filipov"
 __email__      = "vanaka11.89@gmail.com"
 __status__     = "Production"
@@ -187,7 +187,7 @@ def get_hw_num_and_type_from_zip_name(zip_file_name):
     try:
         file_name = zip_file_name.lower()
         is_easy = "леко" in file_name
-        hw_num  = int(re.search(r'\d+', file_name.split("-")[1]).group())
+        hw_num  = int(re.search(r"C*(\d+)-\d+.zip", zip_file_name).group(1))
     except:
         print(zip_file_name + " does not look like moodle's zip file.", file=sys.stderr)
         sys.exit(3)
