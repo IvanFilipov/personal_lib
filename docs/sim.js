@@ -120,7 +120,6 @@ function init() {
 }
 
 function load_mesh() {
-
 	theta_1 = 0;
 	theta_2 = Math.PI / 2;
 	theta_3 = -Math.PI / 2;
