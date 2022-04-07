@@ -184,7 +184,6 @@ function load_mesh() {
 }
 
 function setupGui() {
-
 	target_coords = { x: 60, y: 115, z: 80};
 
 	var gui = new dat.GUI();
